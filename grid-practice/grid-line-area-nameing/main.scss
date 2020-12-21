@@ -1,0 +1,106 @@
+// METHOD 1: Line Numbers
+/*
+.container{
+  width:1000px;
+  margin: 30px auto;
+  color: #fff;
+  font-size:30px;
+  display:grid;
+  grid-template-rows: 100px 200px 400px 100px;
+  grid-template-columns: repeat(3,1fr) 200px;
+  grid-gap: 20px;
+}
+.item{
+  background-color:orangered;
+  
+  &-1{
+    grid-column:1/-1;
+  }
+  
+  &-5{
+    grid-row:2/4;
+    grid-column: 4/5;
+  }
+  
+  &-6{
+    grid-column:1/span 3;
+  }
+  
+  &-7{
+    grid-column:1/-1;
+  }
+}
+*/
+
+// Method 2: LINE NAMES
+/*
+.container{
+  width:1000px;
+  margin: 30px auto;
+  color: #fff;
+  font-size:30px;
+  display:grid;
+  grid-template-rows: [item-1-start] 100px [item-1-end item-2-start] 200px [item-2-end item-6-start] 400px [item-6-end item-7-start] 100px [item-7-end];
+  
+  grid-template-columns: repeat(3, [col-start] 1fr [col-end]) 200px [grid-end];
+  grid-gap: 20px;
+}
+.item{
+  background-color:orangered;
+  
+  &-1{
+    grid-column:col-start 1 / grid-end;
+  }
+  
+  &-5{
+    grid-row:item-2-start / item-6-end;
+    grid-column: col-end 3 / grid-end;
+  }
+  
+  &-6{
+    grid-column:col-start 1 / col-end 3;
+  }
+  
+  &-7{
+    grid-column:col-start 1 / grid-end;
+  }
+}
+*/
+
+// METHOD 3: NAME GRID AREAS
+.container {
+  width: 1000px;
+  margin: 30px auto;
+  color: #fff;
+  font-size: 30px;
+  display: grid;
+  grid-template-rows: 100px 200px 400px 100px;
+  grid-template-columns: repeat(3, 1fr) 200px;
+  grid-gap: 20px;
+
+  grid-template-areas:
+    "head head head head"
+    "box-1 box-2 box-3 side"
+    "main main main side"
+    "foot foot foot foot";
+  //   with a . i can make an empty cell
+}
+.item {
+  background-color: orangered;
+
+  &-1 {
+    grid-area: head;
+  }
+
+  &-5 {
+    grid-area: side;
+  }
+
+  &-6 {
+    grid-area: main;
+  }
+
+  &-7 {
+    grid-area: foot;
+  }
+}
